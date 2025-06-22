@@ -1,0 +1,47 @@
+name: Dumper_payload
+
+on:
+  workflow_dispatch:
+
+env:
+  TZ: Asia/Kolkata
+  GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Rom
+        run: |
+          curl -L "https://github.com/SA9990/mirror/releases/download/blissroms-20250605/Bliss-v18.6-obiwan-OFFICIAL-vanilla-20250605.zip" -o "rom.zip"
+          unzip rom.zip
+          ls -lh
+
+      - name: Clone dumper into root
+        run: |
+          git clone https://github.com/vm03/payload_dumper.git
+          pip install protobuf six bsdiff4 brotli zstandard fsspec requests aiohttp
+          ls -lh payload_dumper
+
+      - name: Copy payload.bin
+        run: |
+          cp payload.bin ./payload_dumper
+          ls -lh payload_dumper
+
+      - name: Extract payload
+        run: |
+          cd payload_dumper
+          python3 payload_dumper.py payload.bin
+          ls -lh output
+
+      - name: 📦 Upload payload to GitHub Release
+        uses: softprops/action-gh-release@v2.3.2
+        with:
+          tag_name: "payload"
+          name: "📅 BlissRoms Release: 2025-06-05"
+          body: |
+            🏷 **Device:** Obiwan    
+            🚀 **Build:** Bliss-v18.6  
+            📅 **Date:** 2025-06-05
+          files: "payload_dumper/output/boot.img"

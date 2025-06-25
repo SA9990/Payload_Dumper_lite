@@ -1,12 +1,12 @@
 name: Dumper_payload
 
 on:
-  workflow_dispatch: 
-     inputs:
-        url:
-        description: "paste_Rom_url_here" 
-        required: true 
-        type: string
+ workflow_dispatch: 
+  inputs:
+    url:
+      description: "paste_Rom_url_here" 
+      required: true 
+      type: string
           
 env:
   TZ: Asia/Kolkata

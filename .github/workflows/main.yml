@@ -1,8 +1,13 @@
 name: Dumper_payload
 
 on:
-  workflow_dispatch:
-
+  workflow_dispatch: 
+     inputs:
+        url:
+        description: "paste_Rom_url_here" 
+        required: true 
+        type: string
+          
 env:
   TZ: Asia/Kolkata
   GITHUB_TOKEN: ${{ secrets.GH_PAT }}
@@ -14,7 +19,7 @@ jobs:
     steps:
       - name: Download Rom
         run: |
-          curl -L "https://github.com/SA9990/mirror/releases/download/blissroms-20250605/Bliss-v18.6-obiwan-OFFICIAL-vanilla-20250605.zip" -o "rom.zip"
+          curl -L "${{ inputs.url }}" -o "rom.zip"
           unzip rom.zip
           ls -lh
 

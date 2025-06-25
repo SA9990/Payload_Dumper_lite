@@ -63,7 +63,3 @@ Ensure the token has the following scopes:
 - [softprops/action-gh-release](https://github.com/softprops/action-gh-release)
 
 ---
-
-## 📄 License
-
-MIT License

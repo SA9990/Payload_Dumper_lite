@@ -44,9 +44,6 @@ jobs:
         uses: softprops/action-gh-release@v2.3.2
         with:
           tag_name: "payload"
-          name: "📅 BlissRoms Release: 2025-06-05"
-          body: |
-            🏷 **Device:** Obiwan    
-            🚀 **Build:** Bliss-v18.6  
-            📅 **Date:** 2025-06-05
+          name: boot_img_dumper
+          body: source "${{ inputs.url }}"
           files: "payload_dumper/output/boot.img"

@@ -46,4 +46,7 @@ jobs:
           tag_name: "payload"
           name: boot_img_dumper
           body: source "${{ inputs.url }}"
-          files: "payload_dumper/output/*.img"
+          files:  |
+                 "payload_dumper/output/boot.img" 
+                 "payload_dumper/output/recovery.img"
+

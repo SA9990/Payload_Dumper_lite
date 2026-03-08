@@ -4,7 +4,7 @@ on:
  workflow_dispatch: 
   inputs:
     url:
-      description: "paste_Rom_url_here" 
+      description: " https://ultimateota.d.miui.com/OS3.0.7.0.WOCCNXM/dada-ota_full-OS3.0.7.0.WOCCNXM-user-16.0-232acd7942.zip?t=1773007178&s=bb5eeb1fd376ed059a6b5cb9ba743e84" 
       required: true 
       type: string
           
@@ -48,5 +48,5 @@ jobs:
           body: source "${{ inputs.url }}"
           files:  |
                  payload_dumper/output/boot.img 
-                 payload_dumper/output/recovery.img
-
+                 payload_dumper/output/abl.img
+                 payload_dumper/output/vmlinux
